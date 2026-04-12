@@ -1,0 +1,39 @@
+
+
+import 'package:flutter/material.dart';
+import 'package:tela_aplicacao/core/constants/app_color.dart';
+import 'package:tela_aplicacao/core/constants/app_strings.dart';
+
+enum TodoStatus {
+  pending(0),
+  inProgress(1),
+  completed(2);
+
+  final int value;
+  const TodoStatus(this.value);
+
+  String get label => switch (this) {
+        TodoStatus.pending => AppStrings.statusPending,
+        TodoStatus.inProgress => AppStrings.statusInProgress,
+        TodoStatus.completed => AppStrings.statusCompleted,
+      };
+
+  Color get color => switch (this) {
+        TodoStatus.pending => AppColors.warning,
+        TodoStatus.inProgress => AppColors.info,
+        TodoStatus.completed => AppColors.success,
+      };
+
+  IconData get icon => switch (this) {
+        TodoStatus.pending => Icons.pending_outlined,
+        TodoStatus.inProgress => Icons.timelapse,
+        TodoStatus.completed => Icons.check_circle_outline,
+      };
+
+  static TodoStatus fromValue(int value) => switch (value) {
+        0 => TodoStatus.pending,
+        1 => TodoStatus.inProgress,
+        2 => TodoStatus.completed,
+        _ => TodoStatus.pending,
+      };
+}
